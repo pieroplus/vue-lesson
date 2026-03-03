@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { type Foods } from '@/types/type'
 import FoodCard from './FoodCard.vue'
 const foods = ref<Foods[]>([
@@ -23,13 +23,13 @@ const foods = ref<Foods[]>([
 const pickedFoodIndex = ref<number>(0)
 const newFoodIndex = ref<number>(1)
 const selectMaxIndex = ref<number>(1)
-const isLast = ref<boolean>(false)
-const pickFood = (click: string) => {
+const isLast = computed(():boolean => {
+  return foods.value.length <= newFoodIndex.value || foods.value.length <= pickedFoodIndex.value;
+})
+const pickFood = (click: string): void => {
   selectMaxIndex.value++
-  if (selectMaxIndex.value >= foods.value.length) {
-    isLast.value = true
-    pickedFoodIndex.value = selectMaxIndex.value - 1
-  } else if (click === 'upChoise') {
+  if (isLast.value) return;
+  if (click === 'upChoise') {
     newFoodIndex.value = selectMaxIndex.value
   } else {
     pickedFoodIndex.value = selectMaxIndex.value
@@ -44,7 +44,7 @@ const pickFood = (click: string) => {
       :emoji="foods[pickedFoodIndex]?.emoji"
       @click="pickFood('upChoise')"
     />
-    <template v-if="!isLast && newFoodIndex < foods.length">
+    <template v-if="!isLast">
       <p>VS</p>
       <FoodCard
         :name="foods[newFoodIndex]?.name"
