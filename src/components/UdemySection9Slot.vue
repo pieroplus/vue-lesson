@@ -3,6 +3,27 @@ import BaseCard from './BaseCard.vue';
 
 </script>
 <template>
+	<BaseCard>
+		<template #header></template>
+		<template #main="{pageCount}">
+			<p v-if="pageCount === 1">
+				Vue.js Course
+			</p>
+			<p v-else-if="pageCount === 2">
+				HTML Course
+			</p>
+			<p v-else>
+				CSS Course
+			</p>
+		</template>
+		<template #footer></template>
+	</BaseCard>
+</template>
+<!-- <script setup lang="ts">
+import BaseCard from './BaseCard.vue';
+
+</script>
+<template>
 	<h1>Slots</h1>
 	<BaseCard >
 		<template v-slot:header="{pageCount}">
@@ -21,4 +42,4 @@ import BaseCard from './BaseCard.vue';
 		</template>
 	</BaseCard>
 	<BaseCard />
-</template>
+</template> -->

@@ -1,6 +1,42 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const count = ref<number>(1);
+</script>
+<template>
+	<div>
+		<button @click="count = 1">1</button>
+		<button @click="count = 2">2</button>
+		<button @click="count = 3">3</button>
+		<header>
+			<slot name="header">
+				<p>Header</p>
+			</slot>
+		</header>
+		<main>
+			<slot name="main" :page-count="count">
+				<p>content</p>
+			</slot>
+		</main>
+		<footer>
+			<slot name="footer">
+				<p>footer</p>
+			</slot>
+		</footer>
+	</div>
+</template>
+<style scoped>
+div {
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+	border-radius: 5px;
+	padding: 16px;
+}
+</style>
+
+
+<!-- <script setup lang="ts">
+import { ref } from 'vue';
+
 const pageCount = ref<number>(1)
 </script>
 <template>
@@ -27,4 +63,4 @@ div {
 	border-radius: 5px;
 	padding: 16px;
 }
-</style>
+</style> -->
