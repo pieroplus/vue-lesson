@@ -1,8 +1,16 @@
-import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import BlogView from '@/views/BlogView.vue'
 import NotFound from '@/views/NotFound.vue'
+import ProfileView from '@/views/ProfileView.vue'
+import PostsView from '@/views/PostsView.vue'
+import LikesView from '@/views/LikesView.vue'
+import NewsView from '@/views/NewsView.vue'
+import HomeFooter from '@/views/HomeFooter.vue'
+import PeopleYouMayKnow from '@/views/PeopleYouMayKnow.vue'
+import PeopleFooter from '@/views/PeopleFooter.vue'
+
+const HomeView = import('@/views/HomeView.vue')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -10,11 +18,35 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      components: {
+        default: HomeView,
+        Sidebar: NewsView,
+        Footer: HomeFooter,
+      },
+    },
+    {
+      path: '/:id',
+      name: 'profile',
+      props: true,
+      components: {
+        default: ProfileView,
+        Sidebar: PeopleYouMayKnow,
+        Footer: PeopleFooter,
+      },
+      children: [
+        {
+          path: 'posts',
+          component: PostsView
+        },
+        {
+          path: 'likes',
+          component: LikesView,
+        }
+      ]
     },
     {
       path: '/about',
-      // alias: '/me',
+      alias: '/me',
       name: 'about',
       component: AboutView,
     },
@@ -24,9 +56,10 @@ const router = createRouter({
       component: BlogView,
     },
     {
-      path: '/:notFound(.*)*',
+      path: '/:pathMatch(.*)*',
       name: 'notfound',
       // redirect: { name: 'home' },
+      props: true,
       component: NotFound,
     },
   ],

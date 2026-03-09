@@ -4,5 +4,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
 import router from './router'
+import { createPinia } from 'pinia'
 
-createApp(App).component('BaseIcon', BaseIcon).use(router).mount('#app')
+const pinia =  createPinia()
+
+createApp(App).component('BaseIcon', BaseIcon).use(router).use(pinia).mount('#app')

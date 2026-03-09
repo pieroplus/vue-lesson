@@ -11,8 +11,21 @@ const toAbout = (): void => {
 <template>
   <h1>Vue Router</h1>
   <RouterLink :to="{ name: 'home' }" replace>Home</RouterLink> |
+  <RouterLink :to="{ name: 'profile', params: {id: 'yoshipi'}}">Profile</RouterLink> |
   <RouterLink :to="{ name: 'about', query: { lang: 'ja' }, hash: '#title' }">About</RouterLink> |
   <button @click="toAbout">About</button> | <button @click="$router.push('/about')">About</button>
 
-  <RouterView />
+  <div class="container">
+    <main>
+      <RouterView />
+    </main>
+    <RouterView name="Sidebar" />
+  </div>
+  <RouterView name="Footer" />
 </template>
+<style scoped>
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+</style>
