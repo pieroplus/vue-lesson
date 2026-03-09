@@ -9,8 +9,7 @@ import UdemySection9Slot from '@/components/UdemySection9Slot.vue'
 import UdemySection9 from './components/UdemySection9.vue'
 import UdemySection10 from './components/UdemySection10.vue'
 import UdemySection11 from './components/UdemySection11.vue'
-
-
+import UdemySection12 from './components/UdemySection12.vue'
 </script>
 
 <template>
@@ -20,8 +19,9 @@ import UdemySection11 from './components/UdemySection11.vue'
   <!-- <UdemySection5 /> -->
   <!-- <UdemySection6 /> -->
   <!-- <UdemySection7 /> -->
-    <!-- <UdemySection9 /> -->
+  <!-- <UdemySection9 /> -->
   <!-- <UdemySection9Slot /> -->
-   <!-- <UdemySection10 /> -->
-   <UdemySection11 />
+  <!-- <UdemySection10 /> -->
+  <!-- <UdemySection11 /> -->
+  <UdemySection12 />
 </template>

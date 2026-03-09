@@ -21,4 +21,4 @@ const useRefHistory = <T>(source: Ref<T>) => {
 
   return { history, undo }
 }
-export {useRefHistory}
+export { useRefHistory }

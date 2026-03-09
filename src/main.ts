@@ -3,5 +3,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
+import router from './router'
 
-createApp(App).component('BaseIcon', BaseIcon).mount('#app')
+createApp(App).component('BaseIcon', BaseIcon).use(router).mount('#app')
